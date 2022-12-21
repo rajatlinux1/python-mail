@@ -4,4 +4,4 @@
 <p>EMAIL_HOST_PASSWORD=</p>
 <p>SMTP_NAME=</p>
 <p>SMTP_PORT=</p>
-<img src="https://github.com/rajatlinux1/python-mail/blob/main/flow.png" alt="">
+<img src="https://github.com/rajatlinux1/python-mail/blob/main/flow.png" alt="flow_image">
