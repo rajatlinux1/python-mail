@@ -17,7 +17,7 @@ environ.Env.read_env('config.env')
 
 EXCEL_FILE = glob.glob(f"{str(BASE_DIR)}/*.xlsx")[0]
 xls_data = pandas.read_excel(EXCEL_FILE)
-receivers_data = xls_data.to_dict('record')
+receivers_data = xls_data.to_dict('records')
 
 
 sender = env("EMAIL_HOST_USER")
@@ -45,7 +45,8 @@ for file in all_files:
         files_size += file_stats.st_size
 
 if has_zip:
-    print("You can't attach any compressed file for security reasons, You have to uncompressed them")
+    # print("You can't attach any compressed file for security reasons, You have to uncompressed them")
+    print(f"\033[91m You can't attach any compressed file for security reasons, You have to uncompressed them \033[0m", )
 
 if files_size > 25000000:
     print(
@@ -102,7 +103,8 @@ else:
         print(f"Mail sent to {data['First Name']}")
 
     session.quit()
-    for file, position in enumerate(files_names, start=1):
+    for position, file in enumerate(files_names, start=1):
         print("\n")
-        print(f"\033[1m {position} - {file_name}\033[0m", )
-    print('All mail sent successfully')
+        print(f"\033[1m {position} - {file}\033[0m", )
+    
+    print("\033[92m All mail sent successfully \033[0m", )
