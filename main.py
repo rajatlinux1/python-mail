@@ -46,7 +46,7 @@ def home():
     for position, name in enumerate(excel_file, start=1):
         print(position, name.split("/")[-1])
 
-    desired_number = input("Chose your desire excel file : ")
+    desired_number = input("choose your targeted excel file : ")
 
     if desired_number.isdigit():
         EXCEL_FILE_NAME = excel_file[int(desired_number)-1]
@@ -54,7 +54,7 @@ def home():
     for position, name in enumerate(directory, start=1):
         print(position, name.split("/")[-1])
 
-    desired_number = input("Chose your desire attachment directory : ")
+    desired_number = input("choose your targeted attachment directory : ")
 
     if desired_number.isdigit():
         ATTACHMENT_DIR_NAME = directory[int(desired_number)-1]
@@ -75,9 +75,7 @@ def action(excel, attachment):
     files_size = 0
 
     all_files = glob.glob(f"{attachment}/*")
-    print("all_files === ", all_files)
-    # return None
-    # print("all_filespath", all_files)
+
 
     has_zip = False
     files_names = []
@@ -147,14 +145,12 @@ def action(excel, attachment):
 
             text = message.as_string()
             session.sendmail(sender, receiver, text)
-            print(f"Mail sent to {data['First Name']}")
+            print(f"Mailed to {data['First Name']}")
 
         session.quit()
         for position, file in enumerate(files_names, start=1):
-            print("\n")
             print(f"\033[1m {position} - {file}\033[0m", )
-
-        print("\033[92m All mail sent successfully \033[0m", )
+        print("\033[92m All mailed successfully \033[0m", )
 
 
 if __name__ == "__main__":
