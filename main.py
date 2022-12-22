@@ -16,6 +16,7 @@ sender = env("EMAIL_HOST_USER")
 password = env("EMAIL_HOST_PASSWORD")
 
 
+
 def home():
     env_file = glob.glob(f"{str(BASE_DIR)}/*.env")
     excel_file = glob.glob(f"{str(BASE_DIR)}/*.xlsx")
@@ -27,17 +28,22 @@ def home():
     message['From'] = sender
 
     if not env_file:
-        print("""Please configure .env file in base directory with these variables
-        EMAIL_HOST_USER=
-        EMAIL_HOST_PASSWORD=
-        SMTP_NAME=
-        SMTP_PORT=
-        """)
-        return None
+        raise FileNotFoundError("Please configure .env file in base directory with these variables\nEMAIL_HOST_USER=\nEMAIL_HOST_PASSWORD=\nSMTP_NAME=\nSMTP_PORT=")
+    
+    if not env("EMAIL_HOST_USER"):
+        raise ValueError("EMAIL_HOST_USER not available in env file")
+
+    if not env("EMAIL_HOST_PASSWORD"):
+        raise ValueError("EMAIL_HOST_PASSWORD not available in env file")
+
+    if not env("SMTP_NAME"):
+        raise ValueError("SMTP_NAME not available in env file")
+
+    if not env("SMTP_PORT"):
+        raise ValueError("SMTP_PORT not available in env file")
 
     if not excel_file:
-        print("Please provide emails excel file in base directory")
-        return None
+        raise FileNotFoundError("Please provide emails excel file in base directory")
 
     for file in all_files:
         if not os.path.isfile(file):
