@@ -15,7 +15,7 @@ environ.Env.read_env('config.env')
 sender = env("EMAIL_HOST_USER")
 password = env("EMAIL_HOST_PASSWORD")
 
-
+print("TEST")
 
 def home():
     env_file = glob.glob(f"{str(BASE_DIR)}/*.env")
