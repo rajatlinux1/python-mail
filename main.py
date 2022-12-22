@@ -125,7 +125,8 @@ def action(excel, attachment):
                     if file_name.endswith(".zip") or file_name.endswith(".tar") or file_name.endswith(".rar"):
                         continue
                     else:
-                        files_names.append(file_name)
+                        if file_name not in files_names:
+                            files_names.append(file_name)
                         binary_pdf = open(file_path, 'rb')
                         payload = MIMEBase(
                             'application', 'octate-stream', Name=file_name)
